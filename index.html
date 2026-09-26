@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teleprompter</title>
+<meta name="description" content="Teleprompter simples com velocidade e tamanho de texto ajustáveis.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%239ee8be'/%3E%3Cpath d='M8 9h16M16 9v16' stroke='%23121816' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101512;color:#edf4ef;font-family:system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:24px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}h1{font-size:22px;letter-spacing:-.7px;margin:0}header span{font-size:14px;color:#a4b4aa}.controls{display:flex;gap:24px;align-items:center;flex-wrap:wrap;padding:20px;background:#1a231e;border:1px solid #35443b;border-radius:16px;margin-bottom:20px}label{display:block;font-size:14px;color:#c1d0c7}label strong{color:#edf4ef;float:right;margin-left:24px;font-variant-numeric:tabular-nums}.setting{flex:1;min-width:180px}input{width:100%;accent-color:#9ee8be;margin:12px 0 0;cursor:pointer}button{font:600 16px system-ui;cursor:pointer;border:1px solid #46594d;border-radius:10px;padding:12px 20px;color:#edf4ef;background:transparent;min-height:48px}button:disabled{opacity:.4;cursor:default}button.primary{background:#9ee8be;border-color:#9ee8be;color:#102619;min-width:128px}button:hover{filter:brightness(1.12)}:focus-visible{outline:3px solid #9ee8be;outline-offset:4px}.stage{border:1px solid #35443b;border-radius:16px;overflow:hidden;background:#080c09}.stage-head{padding:14px 20px;border-bottom:1px solid #26352c;display:flex;justify-content:space-between;gap:16px;color:#a4b4aa;font-size:14px}#reader{height:60vh;min-height:260px;overflow:auto;padding:32px clamp(20px,6vw,80px);scroll-behavior:auto;overscroll-behavior:contain}#script{font-size:48px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;min-height:100%;outline:none;padding-bottom:35vh}#script:empty:before{content:attr(data-placeholder);color:#6f8175;pointer-events:none}footer{color:#9bada1;font-size:14px;margin-top:14px}@media(max-width:600px){main{padding:16px}header span{display:none}.controls{gap:16px;padding:16px}.setting{flex-basis:100%}#reader{height:55vh;padding-top:24px}#script{line-height:1.45}.stage-head{padding:12px 16px}}
+#script strong{color:#ffd86b;font-weight:700}#editorPanel{margin-bottom:20px}textarea{width:100%;margin:12px 0;background:#1a231e;color:#edf4ef;border:1px solid #46594d;border-radius:10px;padding:16px;font:18px/1.6 system-ui;resize:vertical}button{white-space:nowrap}</style>
+</head>
+<body><main>
+<header><h1>Teleprompter<span style="color:#9ee8be"> ●</span></h1><span>No seu ritmo.</span></header>
+<section class="controls" aria-label="Controles de leitura">
+<button id="edit" type="button">Editar texto</button><button id="open" type="button">Abrir .txt</button><input id="file" type="file" accept=".txt,text/plain" hidden><button class="primary" id="play" type="button">Iniciar</button><button id="reset" type="button">Voltar ao início</button>
+<div class="setting"><label for="speed">Velocidade <strong><output id="speedValue">40</output> px/s</strong></label><input id="speed" type="range" min="5" max="160" value="40" step="5"></div>
+<div class="setting"><label for="size">Tamanho do texto <strong><output id="sizeValue">48</output> px</strong></label><input id="size" type="range" min="24" max="96" value="48" step="2"></div>
+</section>
+<section id="editorPanel" hidden><label for="editor">Seu roteiro — use **dois asteriscos** para destacar.</label><textarea id="editor" rows="10" spellcheck="false"></textarea><button id="apply" type="button">Aplicar texto</button></section>
+<section class="stage" aria-label="Área de leitura"><div class="stage-head"><span>Seu texto</span><span id="status" role="status">Pronto para ler</span></div>
+<div id="reader"><div id="script" contenteditable="false" role="textbox" aria-label="Texto do teleprompter" aria-multiline="true" spellcheck="false" data-placeholder="Cole ou digite seu texto aqui…">Cole ou digite seu texto aqui.
+
+Ajuste o tamanho das letras e escolha uma velocidade confortável.
+
+Quando estiver pronto, clique em Iniciar.
+
+Respire, olhe para a câmera e fale no seu ritmo.</div></div></section>
+<footer>Use **dois asteriscos** no roteiro para destacar em amarelo. Os ajustes funcionam durante a leitura.</footer>
+</main>
+<script src="app.js"></script></body></html>
